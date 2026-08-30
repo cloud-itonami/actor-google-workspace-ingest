@@ -4,7 +4,7 @@
  ;; third-party ではない。ここに provider SDK は無い —— HTTP を送るのは host。
  :deps {io.github.kotoba-lang/importer
         {:git/url "https://github.com/kotoba-lang/importer"
-         :git/sha "2caf85aaecb62bf5493b86557271b96de4e30123"}}
+         :git/sha "e5b427ad30c7563a9489c3675fc8f40bdfa3484a"}}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
