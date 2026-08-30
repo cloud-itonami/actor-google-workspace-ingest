@@ -1,0 +1,25 @@
+{
+  "@context": "https://itonami.cloud/ns/actor/v1",
+  "id": "cloud-itonami/actor-google-workspace-ingest",
+  "name": "actor-google-workspace-ingest",
+  "displayName": "Google Workspace Ingest",
+  "description": "One tenant's Gmail, Drive and Calendar, followed by three cursors, behind a deny-by-default gate. Emits effects; sends no HTTP and holds no credential.",
+  "execution": "resident",
+  "did": null,
+  "didStatus": "unpublished",
+  "didNote": "No did:web is claimed. did:web:itonami.cloud resolves (measured 200) but per-actor paths under it do not (measured 404), and naming a DID that does not resolve is the exact defect m365-ingest records in its identity-claims. See docs/identity-claims.edn; a test refuses any did:web in this repository that the claims file has not measured.",
+  "governance": {
+    "classification": "restricted",
+    "piiTier": 3,
+    "retentionDays": 2555,
+    "consentRequired": true,
+    "purpose": "compliance:audit + internal:knowledge-extraction"
+  },
+  "streams": [
+    { "kind": "mail", "cursorStyle": "delta-token", "api": "gmail.users.history.list" },
+    { "kind": "files", "cursorStyle": "page-token", "api": "drive.changes.list" },
+    { "kind": "calendar", "cursorStyle": "sync-token", "api": "calendar.events.list" }
+  ],
+  "emits": ["cloud.itonami.workspace.imported"],
+  "holds": []
+}

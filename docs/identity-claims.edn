@@ -1,0 +1,41 @@
+;; docs/identity-claims.edn — この repo が名乗る identity と、その **実測**。
+;;
+;; 兄弟 `cloud-itonami/m365-ingest` の同名ファイルと同じ役割だが、記録している
+;; 内容は逆である。あちらは「名乗った DID が解決しない」ことを測って固定した。
+;; **ここは、解決しない DID を名乗らないことを選んだ**ので、記録するのは
+;; 『なぜ名乗らないか』の測定になる。
+;;
+;; :http は curl の HTTP status。
+
+{:measured-at "2026-08-30"
+ :measured-how "curl -sL --max-time 8 -o /dev/null -w '%{http_code}'"
+
+ ;; この repo が **名乗る** DID。空である。
+ :claims []
+
+ ;; 名乗らないと決めた根拠。両方とも実測。
+ :observed
+ [{:did      "did:web:itonami.cloud"
+   :url      "https://itonami.cloud/.well-known/did.json"
+   :measured {:http 200}
+   :note     "org の DID は解決し、`did:web:itonami.cloud#site` / `#sites` の
+              service を持つ。**この repo はこれを名乗っていない** —— actor は
+              org ではないので、org の DID を actor の identity として使うと、
+              actor が発行する effect が org に帰属することになる。"}
+
+  {:did      "did:web:itonami.cloud:actor:google-workspace-ingest"
+   :url      "https://itonami.cloud/actor/google-workspace-ingest/did.json"
+   :measured {:http 404}
+   :note     "actor ごとの DID を配る規約は在るように見えるが、**配信されていない**。
+              兄弟 actor で測っても同じ（actor/kafun/did.json も 404）。
+              ここを名乗れば m365-ingest と同じ形になる ——
+              『名乗る DID は解決せず、解決する DID は誰も名乗っていない』。
+              **配信が始まったらここを測り直し、:claims に移す。** それが
+              この actor が DID を持ってよくなる条件である。"}]
+
+ ;; ── census（数を固定する）────────────────────────────────────────────────
+ :census
+ {:required-gate-count 7
+  :stream-count 3
+  :cursor-style-count 3
+  :declared-did-count 0}}

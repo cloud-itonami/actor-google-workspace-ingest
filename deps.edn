@@ -1,0 +1,13 @@
+{:paths ["src"]
+ ;; importer は cursor / coverage / receipt の契約を持ち、connector は importer が
+ ;; corpus を露出するために使う。どちらも workspace の sibling kernel であって
+ ;; third-party ではない。ここに provider SDK は無い —— HTTP を送るのは host。
+ :deps {io.github.kotoba-lang/importer
+        {:git/url "https://github.com/kotoba-lang/importer"
+         :git/sha "2caf85aaecb62bf5493b86557271b96de4e30123"}}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}}}
