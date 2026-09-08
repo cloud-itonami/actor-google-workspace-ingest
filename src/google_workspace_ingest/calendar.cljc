@@ -6,7 +6,7 @@
    例外にすると、計画された経路が障害として記録される。
 
    `status: \"cancelled\"` の event は tombstone。sync 応答の中に混じって来る。"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [importer.normalize :as n]
             [importer.plan :as plan]))
 

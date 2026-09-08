@@ -13,7 +13,7 @@
    attest している呼び出し側だけが黙って全 blocked** になり、安全側に倒れるので
    事故に見えない —— m365-ingest がその罠を測って test に書いた実例で、ここでも
    生存側（受けるべきものを受ける）を両方向から撃つ。"
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def required
   "1 本でも欠ければ blocked。AND であって OR ではない。"

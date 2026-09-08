@@ -12,7 +12,7 @@
 
    metadata だけを扱う。**本文（バイト）はここを通らない**: content は block 面に
    直行し、datom 面には `:file/blob` の参照だけが載る（kotobase の L0/L1 規則）。"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [importer.plan :as plan]))
 
 (def base-url "https://www.googleapis.com/drive/v3")
@@ -42,7 +42,7 @@
       (g f :mimeType) (assoc :file/media-type (g f :mimeType))
       (g f :modifiedTime) (assoc :file/modified-at (g f :modifiedTime))
       owner (assoc :file/owner
-                   (cond-> {:person/address (some-> (g owner :emailAddress) str/lower-case)}
+                   (cond-> {:person/address (some-> (g owner :emailAddress) str/lower)}
                      (g owner :displayName) (assoc :person/name (g owner :displayName)))))))
 
 (defn page

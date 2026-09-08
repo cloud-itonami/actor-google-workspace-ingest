@@ -17,7 +17,7 @@
 
    `messagesDeleted` は record ではなく tombstone。無視すれば retention に答えられず、
    record として扱えば削除されたメールが corpus に残る。"
-  (:require [clojure.string :as str]
+  (:require [kotoba.lang.text :as str]
             [importer.normalize :as n]
             [importer.plan :as plan]))
 
@@ -43,7 +43,7 @@
 
 (defn- header [msg name*]
   (let [hs (or (g (g msg :payload) :headers) [])]
-    (some (fn [h] (when (= (str/lower-case (str (g h :name))) (str/lower-case name*))
+    (some (fn [h] (when (= (str/lower (str (g h :name))) (str/lower name*))
                     (g h :value)))
           hs)))
 
