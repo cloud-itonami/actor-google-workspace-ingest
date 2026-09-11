@@ -1,8 +1,8 @@
-#!/usr/bin/env nbb
+#!/usr/bin/env kbb
 ;; 不変条件を 1 つずつ壊した写しで suite を回し、**赤くなること**と
 ;; **それを pin している test が名前で出ること**の両方を要求する。
 ;;
-;;   nbb --classpath "src:../../kotoba-lang/importer/src" mutate.cljs \
+;;   kbb --backend sci --classpath "src:../../kotoba-lang/importer/src" mutate.cljs \
 ;;       --kernel ../../kotoba-lang/importer/src
 ;;
 ;; 緑の suite が言うのは「コードが test を通る」ことだけで、「コードが正しくなく
@@ -96,7 +96,7 @@
         (if (.isDirectory e) (copy-tree! s d) (fs/copyFileSync s d))))))
 
 (defn- run-suite [dir]
-  (let [r (cp/spawnSync "npx" #js ["--yes" "nbb" "--classpath" (str "src:test:" kernel) "run-tests.cljs"]
+  (let [r (cp/spawnSync "npx" #js ["--yes" "kbb" "--backend" "sci" "--classpath" (str "src:test:" kernel) "run-tests.cljs"]
                         #js {:cwd dir :encoding "utf8"})]
     {:code (.-status r) :out (str (.-stdout r) (.-stderr r))}))
 

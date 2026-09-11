@@ -1,5 +1,5 @@
-#!/usr/bin/env nbb
-;; nbb --classpath "src:test:../../kotoba-lang/importer/src" run-tests.cljs
+#!/usr/bin/env kbb
+;; kbb --backend sci --classpath "src:test:../../kotoba-lang/importer/src" run-tests.cljs
 ;;
 ;; 終了コードは `:end-run-tests` の報告から取る。**`run-tests` の返り値からではない**
 ;; —— nbb ではそれが nil なので、よくある書き方

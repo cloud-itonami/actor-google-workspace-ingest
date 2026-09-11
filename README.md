@@ -64,8 +64,8 @@ historyId が進んだ後の history にも現れず、**恒久的に消える**
 ## 確かめる
 
 ```bash
-nbb --classpath "src:test:../../kotoba-lang/importer/src" run-tests.cljs   # 26 tests / 77 assertions
-nbb --classpath "src:../../kotoba-lang/importer/src" mutate.cljs \
+kbb --backend sci --classpath "src:test:../../kotoba-lang/importer/src" run-tests.cljs   # 26 tests / 77 assertions
+kbb --backend sci --classpath "src:../../kotoba-lang/importer/src" mutate.cljs \
     --kernel ../../kotoba-lang/importer/src                                # 10 mutations
 ```
 
