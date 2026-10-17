@@ -1,0 +1,12 @@
+
+;; .itonami/profiles/shared.edn — itonami repo profile (ADR-2609061200).
+;; THIS FILE IS A DESCRIPTION, NOT AN AUTHORITY. Grant keys
+;; (:bot/tools :bot/accounts :bot/workspace :bot/omakase?) are refused
+;; by validator cloud.itonami.app.repo-profile/admit.
+{:profile/schema "cloud.itonami.app.repo-profile.v1"
+ :profile/id "actor-google-workspace-ingest"
+ :profile/default? true
+ :bot/name "actor-google-workspace-ingest"
+ :bot/brief "cloud-itonami/actor-google-workspace-ingest の常駐 actor。charter に従って行動する。"
+ :bot/context-refs [{:kind "repo" :target "cloud-itonami/actor-google-workspace-ingest"}]
+ :bot/tools-requested []}
